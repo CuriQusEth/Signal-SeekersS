@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-base-dark: #05070a;
+  --color-text-muted: #a0aec0;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Oswald', sans-serif;
+}
+
+body {
+  background-color: var(--color-base-dark);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  overflow: hidden; /* Prevent scrolling on mobile */
+  touch-action: none; /* Prevent rubber-banding */
+}
+
+/* Custom Scrollbar for list areas */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Visualizer Glow FX */
+.glow-text {
+  text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
