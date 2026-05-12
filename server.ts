@@ -69,6 +69,45 @@ app.get("/api/leaderboard", (req, res) => {
   res.json(leaderboard.slice(0, 50));
 });
 
+// MCP Endpoints
+app.get("/api/mcp", (req, res) => {
+  res.json({
+    protocol: "MCP",
+    version: "1.0.0",
+    name: "Signal Seekers MCP Endpoint",
+    status: "active",
+    description: "Active MCP server for Signal Seekers Orchestrator Agent",
+    capabilities: ["signal-detection", "opportunity-seeking", "multi-signal-management"],
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.post("/api/mcp", (req, res) => {
+  try {
+    const body = req.body;
+    res.json({
+      status: "success",
+      message: "MCP command received",
+      agent: "Signal Seekers Orchestrator",
+      receivedAt: new Date().toISOString(),
+      payload: body
+    });
+  } catch (error) {
+    res.status(400).json({ error: "Invalid MCP request" });
+  }
+});
+
+// Agent API
+app.get("/api/agent", (req, res) => {
+  res.json({
+    name: "Signal Seekers Orchestrator",
+    status: "active",
+    wallet: "0x29536D0bc1004ab274c4F0F59734Ad74D4559b7B",
+    platform: "Signal Seekers",
+    version: "1.0.0"
+  });
+});
+
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

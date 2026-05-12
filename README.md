@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Signal Seekers
 
-# Run and deploy your AI Studio app
+**Signal Seekers** is a frequency scanner and deep space anomaly detection game. Dive deep into the void, lock onto cryptic signals, and uncover the mysteries hidden within the static.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/d804d343-a1bf-4eeb-a9a1-a6a54b54ae4d
+- **Signal Scanner HUD**: A fully specialized UI for searching and locking onto frequencies.
+- **Deep Void Exploration**: Lock onto targets to increase your depth and recover lost signals.
+- **Data Fragments & Upgrades**: Gain DATA fragments for decoding signals and use them to upgrade your hardware.
+- **Codex**: Track the decrypted messages and logs you uncover across your journey.
+- **On-Chain Leaderboard**: Submit your highest depth and accumulated scores to an on-chain leaderboard.
+- **ERC-8004 AI Agent Integration**: Equipped with an MCP-enabled agent orchestrator for multi-signal management and signal detection.
 
-## Run Locally
+## Development
 
-**Prerequisites:**  Node.js
+The project is built with React, Vite, and tailwind CSS on the frontend, with an Express backend for managing leaderboards, API endpoints, and SIWE (Sign-In with Ethereum) capabilities.
 
+```bash
+# Install dependencies
+npm install
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+# Run development server
+npm run dev
+```
+
+## Agent Configuration
+The application exposes a standard `agent-card.json` pointing to an MCP orchestrator.
+- **Agent Card**: `/.well-known/agent-card.json`
+- **MCP Endpoint**: `/api/mcp`
+- **Agent Info**: `/api/agent`
