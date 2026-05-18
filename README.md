@@ -2,29 +2,64 @@
 
 **Signal Seekers** is a frequency scanner and deep space anomaly detection game. Dive deep into the void, lock onto cryptic signals, and uncover the mysteries hidden within the static.
 
-## Features
+## Project Overview
 
-- **Signal Scanner HUD**: A fully specialized UI for searching and locking onto frequencies.
-- **Deep Void Exploration**: Lock onto targets to increase your depth and recover lost signals.
-- **Data Fragments & Upgrades**: Gain DATA fragments for decoding signals and use them to upgrade your hardware.
-- **Codex**: Track the decrypted messages and logs you uncover across your journey.
-- **On-Chain Leaderboard**: Submit your highest depth and accumulated scores to an on-chain leaderboard.
-- **ERC-8004 AI Agent Integration**: Equipped with an MCP-enabled agent orchestrator for multi-signal management and signal detection.
+Welcome to the **Signal Seekers Orchestrator**. This project powers an ERC-8004 compliant AI agent for the Signal Seekers platform. The orchestrator is designed for precision tracking, deep space scanning, and automated anomaly responses. It autonomously monitors the network to provide competitive advantages, unlocking deep-void data fragments securely.
 
-## Development
+### Key Capabilities
+- Signal Detection
+- Opportunity Seeking
+- Multi-Signal Management
+- Trading Signals
+- Automation
+- MCP Command Execution
 
-The project is built with React, Vite, and tailwind CSS on the frontend, with an Express backend for managing leaderboards, API endpoints, and SIWE (Sign-In with Ethereum) capabilities.
+## Tech Stack
 
-```bash
-# Install dependencies
-npm install
+- **Frontend**: React, Vite, Tailwind CSS
+- **Backend / Agent API**: Next.js 14 (App Router)
+- **Web3 Integrations**: EIP-155 / EIP-8004 standard compatibility (Base Network)
 
-# Run development server
-npm run dev
-```
+## MCP Connection Guide
 
-## Agent Configuration
-The application exposes a standard `agent-card.json` pointing to an MCP orchestrator.
-- **Agent Card**: `/.well-known/agent-card.json`
-- **MCP Endpoint**: `/api/mcp`
-- **Agent Info**: `/api/agent`
+The agent is fully integrated with the **Model Context Protocol (MCP)**, allowing for active command execution via standardized API routes. 
+
+- **Endpoint**: `https://signal-seekers-s.vercel.app/api/mcp`
+- **Supported Methods**: `GET`, `POST`
+- **Available Tools**:
+  - `get_race_status`
+  - `start_race`
+  - `get_leaderboard`
+  - `optimize_speed`
+  - `get_track_info`
+
+To test the MCP connection locally or remotely, send a generic `POST` request or use an MCP-compliant client matching the tools listed above.
+
+## Agent Registration Info
+
+The agent serves a public `agent-card.json` allowing for decentralized discovery and Agent-to-Agent (A2A) handshakes.
+
+- **Agent Name**: Signal Seekers Orchestrator
+- **Standard**: ERC-8004 Registration (v1)
+- **Supported Chains**: `eip155:8453` (Base)
+- **Manifest Location**: `https://signal-seekers-s.vercel.app/.well-known/agent-card.json`
+
+## How to Run Locally
+
+First, ensure you have Node.js and `npm` installed.
+
+1. **Clone the repository:**
+   ```bash
+   git clone [repository-url]
+   cd signal-seekers
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
