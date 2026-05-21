@@ -92,11 +92,11 @@ app.post(["/api/mcp", "/app/api/mcp"], (req, res) => {
     if (method === 'tools/list') {
       result = {
         tools: [
-          { name: "get_race_status", description: "Get the current status of the race" },
-          { name: "start_race", description: "Initialize and start a new race" },
-          { name: "get_leaderboard", description: "Retrieve the current global leaderboard" },
-          { name: "optimize_speed", description: "Optimize the speed parameters" },
-          { name: "get_track_info", description: "Get detailed information about the track" }
+          { name: "get_race_status", description: "Get the current status of the race", inputSchema: { type: "object", properties: {} } },
+          { name: "start_race", description: "Initialize and start a new race", inputSchema: { type: "object", properties: {} } },
+          { name: "get_leaderboard", description: "Retrieve the current global leaderboard", inputSchema: { type: "object", properties: {} } },
+          { name: "optimize_speed", description: "Optimize the speed parameters", inputSchema: { type: "object", properties: {} } },
+          { name: "get_track_info", description: "Get detailed information about the track", inputSchema: { type: "object", properties: {} } }
         ]
       };
     } else if (method === 'tools/call') {
