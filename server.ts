@@ -87,7 +87,7 @@ app.post(["/api/mcp", "/app/api/mcp"], (req, res) => {
     const body = req.body;
     const { method, params } = body;
 
-    let result = null;
+    let result: any = null;
 
     if (method === 'tools/list') {
       result = {
@@ -103,27 +103,36 @@ app.post(["/api/mcp", "/app/api/mcp"], (req, res) => {
       const toolName = params?.name;
       switch (toolName) {
         case 'get_race_status':
-          result = { status: "active", phase: "tracking" };
+          result = { content: [{ type: "text", text: JSON.stringify({ status: "active", phase: "tracking" }) }] };
           break;
         case 'start_race':
-          result = { success: true, message: "Race has been started." };
+          result = { content: [{ type: "text", text: JSON.stringify({ success: true, message: "Race has been started." }) }] };
           break;
         case 'get_leaderboard':
-          result = { leaderboard: [] }; 
+          result = { content: [{ type: "text", text: JSON.stringify({ leaderboard: [] }) }] }; 
           break;
         case 'optimize_speed':
-          result = { optimized: true, newSpeed: "max" };
+          result = { content: [{ type: "text", text: JSON.stringify({ optimized: true, newSpeed: "max" }) }] };
           break;
         case 'get_track_info':
-          result = { trackName: "Void Alpha", length: 10000 };
+          result = { content: [{ type: "text", text: JSON.stringify({ trackName: "Void Alpha", length: 10000 }) }] };
           break;
         default:
-          result = { error: `Tool ${toolName} not found` };
+          result = { isError: true, content: [{ type: "text", text: `Tool ${toolName} not found` }] };
       }
     } else if (method === 'prompts/list') {
       result = { prompts: [] };
     } else if (method === 'resources/list') {
       result = { resources: [] };
+    } else if (method === 'initialize') {
+      result = {
+        protocolVersion: "2024-11-05",
+        capabilities: { tools: {}, prompts: {}, resources: {} },
+        serverInfo: {
+          name: "Signal Seekers Orchestrator",
+          version: "1.0.0"
+        }
+      };
     } else {
       result = {
         status: "success",
@@ -134,7 +143,15 @@ app.post(["/api/mcp", "/app/api/mcp"], (req, res) => {
       };
     }
 
-    res.json(result);
+    if (body.jsonrpc === "2.0") {
+      res.json({
+        jsonrpc: "2.0",
+        id: body.id,
+        result: result
+      });
+    } else {
+      res.json(result);
+    }
   } catch (error) {
     res.status(400).json({ error: "Invalid MCP request" });
   }
