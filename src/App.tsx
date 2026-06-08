@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useGameStore } from './store/gameStore';
+import { useAccount, useSendTransaction } from 'wagmi';
+import { Sun } from 'lucide-react';
+import { getAttributionPayload, encodeAttributionData } from './lib/erc8021';
 
 // Providers
 import { Providers } from './Providers';
@@ -15,11 +18,24 @@ import { UpgradesScreen } from './components/UpgradesScreen';
 
 function GameCoordinator() {
   const currentScreen = useGameStore(state => state.currentScreen);
+  const { isConnected } = useAccount();
+  const { sendTransaction } = useSendTransaction();
 
   // Set theme colors via body
   useEffect(() => {
     document.body.className = 'bg-[#05070a] text-[#a0aec0] antialiased selection:bg-cyan-500/30 selection:text-white';
   }, []);
+
+  const sendGMTransaction = () => {
+    // Generate ERC-8021 tracking payload
+    const attribution = getAttributionPayload();
+    const encodedData = encodeAttributionData(attribution);
+    
+    sendTransaction({
+      to: '0xcD0dd3716C5561De47a24949335dF8a8CD8F71a3', // Target contract
+      data: encodedData as `0x${string}`
+    });
+  };
 
   return (
     <div className="min-h-dvh flex flex-col overflow-hidden relative">
@@ -40,8 +56,17 @@ function GameCoordinator() {
                 <p className="text-[8px] text-cyan-400/70 font-mono uppercase leading-tight">Scanner v.2.0.4</p>
               </div>
             </div>
-            <div className="flex gap-4 items-center font-mono">
-              <div className="flex flex-col items-end">
+            <div className="flex gap-4 items-center flex-row">
+              {isConnected && (
+                <button
+                  onClick={sendGMTransaction}
+                  className="px-3 py-2 rounded-lg bg-[#E8A020]/20 hover:bg-[#E8A020]/30 border border-[#E8A020]/40 text-[#E8A020] transition-colors flex items-center gap-2 font-['Cinzel'] text-xs font-bold"
+                >
+                  <Sun size={14} />
+                  Say GM
+                </button>
+              )}
+              <div className="flex flex-col items-end font-mono">
                 <span className="text-[8px] uppercase opacity-50">Base Mainnet</span>
                 <span className="text-[10px] text-cyan-400 flex items-center gap-1"><div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div> Live</span>
               </div>
