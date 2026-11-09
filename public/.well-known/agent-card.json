@@ -57,6 +57,8 @@
       "description": "Get detailed information about the track"
     }
   ],
+  "protocolUpgrade": "Denim",
+  "blockTimeMs": 200,
   "supportedChains": ["eip155:8453"],
   "active": true,
   "status": "online"

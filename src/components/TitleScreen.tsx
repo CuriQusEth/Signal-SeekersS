@@ -49,7 +49,7 @@ export function TitleScreen() {
       <div className="absolute bottom-6 font-mono text-[9px] text-white/30 uppercase tracking-widest flex items-center gap-4">
         <span>ERC-8021</span>
         <div className="w-1 h-1 bg-white/30 rounded-full"></div>
-        <span>Base Mainnet</span>
+        <span className="text-cyan-400/70">Base Mainnet (Denim 200ms)</span>
       </div>
     </motion.div>
   );

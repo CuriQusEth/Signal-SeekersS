@@ -67,8 +67,8 @@ function GameCoordinator() {
                 </button>
               )}
               <div className="flex flex-col items-end font-mono">
-                <span className="text-[8px] uppercase opacity-50">Base Mainnet</span>
-                <span className="text-[10px] text-cyan-400 flex items-center gap-1"><div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div> Live</span>
+                <span className="text-[8px] uppercase opacity-50">Base Mainnet (Denim)</span>
+                <span className="text-[10px] text-cyan-400 flex items-center gap-1"><div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div> 200ms Native</span>
               </div>
             </div>
           </div>

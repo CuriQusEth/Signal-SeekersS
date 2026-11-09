@@ -8,8 +8,14 @@ const queryClient = new QueryClient();
 export const wagmiConfig = createConfig({
   chains: [base],
   transports: {
-    [base.id]: http(),
+    [base.id]: http('https://mainnet.base.org', {
+      batch: true,
+      retryCount: 3,
+      retryDelay: 200, // 200ms block interval in Denim
+    }),
   },
+  // Denim operates with 200ms canonical blocks; polling every 250-500ms ensures sub-second updates
+  pollingInterval: 250,
 });
 
 export function Providers({ children }: { children: ReactNode }) {

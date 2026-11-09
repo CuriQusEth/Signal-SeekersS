@@ -30,6 +30,7 @@ export function useSiwe() {
 
       // 3. Sign Message
       const signature = await signMessageAsync({
+        account: address,
         message: message.prepareMessage(),
       });
 
@@ -69,6 +70,7 @@ export function useSiwe() {
       // Sign the score submission as proof
       const statement = `I submit a depth of ${depth} and score of ${score} to Signal Seekers. ${encodedAttribution}`;
       const signature = await signMessageAsync({
+        account: address,
         message: statement
       });
 
@@ -89,6 +91,7 @@ export function useSiwe() {
     if (!address) return;
     try {
       const signature = await signMessageAsync({
+        account: address,
         message: `GM from Signal Seekers! Base Builder: bc_m82npol5`
       });
       alert(`GM recorded on-chain! Signature: ${signature.slice(0, 10)}...`);
